@@ -1,101 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>TextBox</title>
-	<style type="text/css">
-		body
-		{
-/*			background-image: url("https://i.pinimg.com/originals/4e/de/5a/4ede5a33c5490195b2b17466ad26d124.gif");*/
-			background-image: url("https://media.tenor.com/dtrGAHeyypgAAAAd/background.gif");
-			background-size: cover;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Clock</title>
+    <!-- <link rel="stylesheet" href="Clock.css"> -->
+    <style>
+      
+*{
+    font-family: sans-serif;
+    
+}
+.bd{
+    position: relative,fixed;
+    background-image: url(https://media.licdn.com/dms/image/D4E12AQEor_pP6cx5tg/article-cover_image-shrink_720_1280/0/1696250299583?e=2147483647&v=beta&t=9_0P8xsYJ6GBNT4KISn9kqCd0e86XZ_7i_T2a87wgXo)
+}
 
-		}
-		button
-		{
-			border: none;
-			outline: none;
-			height: 35px;
-			width: 150px;
-			margin: 5px;
-			font-family: cursive;
-			background-color: whitesmoke;
-			border-radius: 5px;
-			transition: width 0.2s;
-			transition: height 0.3s;
+.Clockmain{
+    box-shadow: 0px 0px 10px whitesmoke;
+    position: absolute,fixed;
+    z-index: 1;
+    margin-left: 433PX;
+    margin-top: 303PX;
+    height: 76px;
+    width: 85px;
+    align-items: baseline;
+    align-content: baseline;
+    justify-content: center;
+    /* background-image: url(https://w0.peakpx.com/wallpaper/131/156/HD-wallpaper-apple-watch-fabric-black.jpg); */
+    background-image: url(https://img.freepik.com/free-photo/empty-dark-room-modern-futuristic-sci-fi-background-3d-illustration_35913-2332.jpg?size=626&ext=jpg&ga=GA1.1.735520172.1710979200&semt=ais);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 60%; 
+    /* background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Computer-screen-code-glitch-animation-gif-background-free.gif/1200px-Computer-screen-code-glitch-animation-gif-background-free.gif); */
+    color:rgb(241, 235, 227);
+    padding: 25px;
+    border-radius: 35px;
+    border: 1PX solid white;
+    background-position: static;
+    text-align: center;
+    transform: rotate(1deg);
+    border-top-left-radius: 37px;
+    border-bottom-right-radius: 37px;
 
-		}
-		button:hover
-		{
-			height: 45px;
-			width: 160px;
-			background-color: purple;
-			color: white;
-			cursor: pointer;
+}
 
-		}
-		#userText{
-/*			border: 2px solid darkred;*/
-
-			transition: 0.5s;
-			border-radius: 10px;
-		}
-		#userText:hover{
-			background-color: transparent;
-			color: white;
-			font-size: px;
-		}
-		label{
-			margin-left: 10px;
-		}
-		#userText{
-			height: 250px;
-			width: 500px;
-			font-size: 25px;
-		}
-		
-		
-	</style>
+.dis{
+    margin-top: 50px;
+   align-items: center;
+   align-content: baseline;
+   color: white;
+   text-underline-position: below;
+   
+}
+    </style>
 </head>
-<body>
-		<div class="textbox">
-			<div align="center">
-				<form action="">
-					<label for="" style="color: white;"><h1>Enter a text</h2></label>
-					<textarea name="text" id="userText" cols="40" rows="10"></textarea><br>
-					<button type="button" onclick="upperCase()">Convert to Uppercase</button>
-					<button type="button" onclick="lowerCase()">Convert to Lowercase</button>
-					<button onclick="search()">Search</button>
-					<h1	 style="color: white;">
-						Text contains <span id="word"></span>words and<span id="character"></span>character
-					</h3>
-				</form>
-			</div>
-		</div>
-		<script type="text/javascript">
-			let userText = document.getElementById("userText");	//the enter text in textarea will will fetch in userText
-			let word = document.getElementById("word");
-			word.innerHTML="0";
-			let character = document.getElementById("character")
-			character.innerHTML="0";
+<body class="bd">
+    <div class="Clockmain">
+        <p class="dis">
+        <span id="hr" ></span>:
+        <span id="min" ></span>:
+        <span id="sec" ></span>
+    </p>
 
-		function search() {
-			let arr = userText.value.split('').length;
-			word.innerHTML=arr;
-			let stringLength = userText.value.length;
-			character.innerHTML = stringLength;
-		}
-		search6qq		();
+    </div>
+    <script>
+        let hour=document.getElementById("hr");
+        let min=document.getElementById("min");
+        let sec=document.getElementById("sec");
 
-		function upperCase() {
-			userText.value=userText.value.toUpperCase();
-		}
+        function updateTime() {
+            let tm =new Date();
+            let hr=tm.getHours();
+            let mn=tm.getMinutes();
+            let sc=tm.getSeconds();
+            if (hr>12) {
+                hour.innerHTML=hr-12;
+                min.innerHTML=mn;
+                sec.innerHTML=sc+'pm';
+            } else {
+                hour.innerHTML=hr;
+                min.innerHTML=mn;
+                sec.innerHTML=sc+'am';
+            }
+            
+            
+        }
+        setInterval(updateTime,1000)
 
-		function lowerCase() {
-			userText.value=userText.value.toLowerCase();
-		}
-
-		</script>
+    </script>
+    
 </body>
 </html>
